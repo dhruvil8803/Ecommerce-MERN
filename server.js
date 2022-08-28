@@ -22,6 +22,9 @@ app.use("/api/products", require('./Routes/ProductsCRUD.js'));
 app.use("/api/users", require('./Routes/UserCRUD.js'));
 app.use("/api/orders", require('./Routes/OrderCRUD.js'));
 app.use(express.static(path.resolve(__dirname, "./client/build")));
+app.get("/*", function (request, response) {
+    response.sendFile(path.resolve(__dirname, "./client/build/index.html"));
+  });
 app.listen(PORT, ()=>{
     console.log("Listening to port 5000");
 })
