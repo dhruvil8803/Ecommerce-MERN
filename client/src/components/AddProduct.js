@@ -53,8 +53,8 @@ export default function AddProduct() {
            setStatus(false);
            return;
        }
-       if(data.price > 1000000){
-           alert.error("Price of product can atmost be 1M");
+       if(data.price > 200000){
+           alert.error("Price of product can atmost be 200k");
            setStatus(false);
            return;
        }

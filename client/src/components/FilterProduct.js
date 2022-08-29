@@ -15,6 +15,7 @@ export default function FilterProduct() {
   let showAllProducts = async(page)=>{
     setStatus(false);
     let response = await context.fetchApi("","GET", `api/products/showAllProduct?page=${page}&category=${category}&price[lte]=${price[1]}&price[gte]=${price[0]}&keyword=${keyword}&rating[gte]=${rating}`);
+    console.log(response);
     setProduct(response.response);
     setStatus(true);
   }
@@ -77,7 +78,7 @@ export default function FilterProduct() {
           <label  className="form-label">Least Rating: </label>
           <Slider value={rating} onChange={changeRating} valueLabelDisplay="auto" min={0} max={5} sx={{width: "75%", display: "block"}}/>
           </div>
-          <button type="button" className="btn btn-primary text-black my-3 w-50" onClick={filterResult}style={{backgroundColor: "#9eeaf9"}}>Search</button>
+          <button type="button" className="btn btn-primary text-black my-3 w-50" onClick={filterResult} style={{backgroundColor: "#9eeaf9"}}>Search</button>
         </form>
       </div>
       <div className="d-flex flex-column h-100" style={{width: "80%", overflow:"auto"}}>  
@@ -93,9 +94,10 @@ export default function FilterProduct() {
         return <Item key={e._id} value={e} cell={3}/>
        })
        }
+       {product.response.length === 0 && <div className="w-100 d-flex justify-content-center align-items-center" style={{height: "50vh"}}><h1 className="text-white">No Such Product Exists</h1></div>}
        <div className="d-flex justify-content-between my-3">
        <button type="button" onClick={()=>changePage(-1)} disabled={(page===1) ? true : false} className="btn btn-primary text-black" style={{backgroundColor: "#9eeaf9"}}><i className="fa-solid fa-arrow-left"></i> Previous</button>
-       <button type="button" onClick={()=>changePage(1)} disabled={(page===Math.ceil(product.result/8)) ? true : false} className="btn btn-primary text-black" style={{backgroundColor: "#9eeaf9"}}>Next <i className="fa-solid fa-arrow-right"></i></button>
+       <button type="button" onClick={()=>changePage(1)} disabled={(page>=Math.ceil(product.result/8)) ? true : false} className="btn btn-primary text-black" style={{backgroundColor: "#9eeaf9"}}>Next <i className="fa-solid fa-arrow-right"></i></button>
        </div>
       </div>}
       {

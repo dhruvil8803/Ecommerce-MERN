@@ -23,7 +23,6 @@ export default function Productdetail() {
   let alert = useAlert();
   let check = async () => {
     let response = await context.fetchApi("", "POST", `api/products/showProduct/${id}`, "multipart/form-data");
-    console.log(response);
     setDetail(response.response);
     setStatus(true);
   }
