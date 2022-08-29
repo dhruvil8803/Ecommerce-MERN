@@ -23,6 +23,7 @@ export default function Productdetail() {
   let alert = useAlert();
   let check = async () => {
     let response = await context.fetchApi("", "POST", `api/products/showProduct/${id}`, "multipart/form-data");
+    console.log(response);
     setDetail(response.response);
     setStatus(true);
   }
@@ -118,7 +119,7 @@ let addReview = async ()=>{
                 <Carousel>
                   {
                   detail.images.map((e)=>{
-                    return <img className="h-100 w-100" src={e.url} alt="productimages" style={{ objectFit: "cover", objectPosition: "center" }} />
+                    return <img key={e.public_id}className="h-100 w-100" src={e.url} alt="productimages" style={{ objectFit: "cover", objectPosition: "center" }} />
                   })
                 }
                 </Carousel>
@@ -182,10 +183,10 @@ let addReview = async ()=>{
                   <button onClick={increaseQuantity} type="button" className="btn btn-primary text-black" style={{ backgroundColor: "#9eeaf9" }}>+</button>
                 </div>
                 <div className="d-flex justify-content-start my-2">
-                  <button type="button" onClick={addToCart} disabled={detail.stock === 0} className="btn btn-primary text-black" style={{ backgroundColor: "#9eeaf9" }}><i class="fa-solid fa-cart-plus"></i> Add to cart</button>
-                 { context.user.success && <button type="button" onClick={openModal} className="btn btn-primary text-black mx-2" style={{ backgroundColor: "#3dbbd2" }}><i class="fa-solid fa-plus"></i> {checkOut() ? "Update Review" : "Add Review"}</button>}
+                  <button type="button" onClick={addToCart} disabled={detail.stock === 0} className="btn btn-primary text-black" style={{ backgroundColor: "#9eeaf9" }}><i className="fa-solid fa-cart-plus"></i> Add to cart</button>
+                 { context.user.success && <button type="button" onClick={openModal} className="btn btn-primary text-black mx-2" style={{ backgroundColor: "#3dbbd2" }}><i className="fa-solid fa-plus"></i> {checkOut() ? "Update Review" : "Add Review"}</button>}
                 </div>
-                  {context.user.success && <button type="button" disabled={!checkOut()} onClick={deleteReview} className="btn btn-danger text-black" style={{width: "45%"}}><i class="fa-solid fa-trash-can"></i> Delete Review</button>}
+                  {context.user.success && <button type="button" disabled={!checkOut()} onClick={deleteReview} className="btn btn-danger text-black" style={{width: "45%"}}><i className="fa-solid fa-trash-can"></i> Delete Review</button>}
               </div>
             </div>
           </div>
