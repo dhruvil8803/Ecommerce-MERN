@@ -15,7 +15,6 @@ export default function FilterProduct() {
   let showAllProducts = async(page)=>{
     setStatus(false);
     let response = await context.fetchApi("","GET", `api/products/showAllProduct?page=${page}&category=${category}&price[lte]=${price[1]}&price[gte]=${price[0]}&keyword=${keyword}&rating[gte]=${rating}`);
-    console.log(response);
     setProduct(response.response);
     setStatus(true);
   }
