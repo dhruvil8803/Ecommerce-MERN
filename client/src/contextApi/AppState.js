@@ -5,8 +5,7 @@ import Context from "./Context.js";
 import axios from "axios";
 let AppState = (props) =>{
   let navigate = useNavigate();
-    // let host = "http://localhost:5000/"
-    let host = "https://ecommerce-mern-8803.herokuapp.com/";
+    let host = "http://localhost:5000/"
      let [user, setUser] = useState({success: false});
     let alert = useAlert();
    let [cart, setCart] = useState(localStorage.getItem('cartEcommerce') ? JSON.parse(localStorage.getItem('cartEcommerce')) : []);
