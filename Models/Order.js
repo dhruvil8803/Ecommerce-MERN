@@ -37,7 +37,7 @@ const schema = new mongoose.Schema({
       },
       desc:{
         type: String,
-        required : [true, "Descreption of the product is requires"]
+        required : [true, "Descreption of the product is required"]
       },
       product: {
         type: mongoose.Schema.ObjectId,
